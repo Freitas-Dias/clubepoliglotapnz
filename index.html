@@ -559,15 +559,16 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
 }
 
 
+
 /* VISITOR COUNTER */
 .counter-section {
   background: var(--bg2);
   border-top: 2px solid var(--border);
-  padding: 48px 2rem;
+  padding: 44px 2rem;
   text-align: center;
 }
 .counter-wrap {
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -581,60 +582,55 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
 }
 .counter-display {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  align-items: stretch;
+  gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
 }
 .counter-box {
   background: var(--white);
   border: 2px solid var(--border);
-  border-radius: 20px;
-  padding: 1.5rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .35rem;
-  min-width: 180px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border-radius: 18px;
+  padding: 1.25rem 2rem;
+  display: flex; flex-direction: column;
+  align-items: center; gap: .3rem;
+  min-width: 160px;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.06);
   transition: box-shadow .2s, transform .2s;
+  position: relative; overflow: hidden;
+}
+.counter-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--terra);
 }
 .counter-box:hover {
-  box-shadow: 0 8px 28px rgba(176,58,24,0.1);
+  box-shadow: 0 8px 28px rgba(176,58,24,0.12);
   transform: translateY(-2px);
 }
-.counter-icon { font-size: 1.6rem; margin-bottom: .2rem; }
+.counter-icon { font-size: 1.4rem; }
 .counter-num {
   font-family: 'Playfair Display', serif;
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--terra);
-  line-height: 1;
-  min-width: 120px;
-  text-align: center;
+  font-size: 2.2rem; font-weight: 700;
+  color: var(--terra); line-height: 1;
+  min-width: 100px; text-align: center;
+  transition: all .3s;
 }
-.counter-num.loading {
-  opacity: .4;
-  font-size: 1.5rem;
-}
+.counter-num.loading { color: var(--border); font-size: 1.5rem; }
 .counter-sublabel {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: .8px;
+  font-size: 11px; font-weight: 700;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .7px;
 }
 .counter-since {
-  font-size: 12px;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  font-size: 12px; color: var(--muted);
+  display: flex; align-items: center; gap: 5px;
 }
-@media (max-width: 500px) {
-  .counter-box { min-width: 140px; padding: 1.25rem 1.5rem; }
-  .counter-num { font-size: 2rem; }
+@media (max-width: 480px) {
+  .counter-display { gap: .75rem; }
+  .counter-box { min-width: 130px; padding: 1rem 1.25rem; }
+  .counter-num { font-size: 1.8rem; }
 }
+
 
 </style>
 </head>
@@ -1263,30 +1259,20 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
   <div class="counter-wrap">
     <span class="counter-label">📊 Visitantes do site</span>
     <div class="counter-display">
-
       <div class="counter-box">
         <span class="counter-icon">👁</span>
-        <span class="counter-num loading" id="total-count">...</span>
+        <span class="counter-num loading" id="total-count">—</span>
         <span class="counter-sublabel">Total de visitas</span>
       </div>
-
       <div class="counter-box">
         <span class="counter-icon">📅</span>
-        <span class="counter-num loading" id="today-count">...</span>
+        <span class="counter-num loading" id="today-count">—</span>
         <span class="counter-sublabel">Visitas hoje</span>
       </div>
-
     </div>
     <span class="counter-since">🌵 Clube Poliglota PNZ · desde agosto de 2024</span>
-
-    <!-- Hidden hit tracker (increments counter on page load) -->
-    <img
-      src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ffreitas-dias.github.io%2Fclubepoliglotapnz&count_bg=%23B03A18&title_bg=%231C1510&title=hits&edge_flat=true"
-      alt=""
-      id="hits-badge"
-      style="position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;"
-      onload="parsehitsCount(this)"
-    >
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ffreitas-dias.github.io%2Fclubepoliglotapnz&count_bg=%23B03A18&title_bg=%231C1510&icon=eye.svg&icon_color=%23E8E8E8&title=Total%20de%20Visitas&edge_flat=false" alt="visitas" id="hits-badge"
+      style="position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;">
   </div>
 </section>
 
@@ -1375,55 +1361,6 @@ document.querySelectorAll('.step-card,.sched-card,.link-card,.idioma-pill,.team-
   obs.observe(el);
 });
 
-// VISITOR COUNTER
-function animateCount(el, target) {
-  var start = 0;
-  var duration = 1800;
-  var startTime = null;
-  function step(timestamp) {
-    if (!startTime) startTime = timestamp;
-    var progress = Math.min((timestamp - startTime) / duration, 1);
-    var ease = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(ease * target).toLocaleString('pt-BR');
-    if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = target.toLocaleString('pt-BR');
-  }
-  el.classList.remove('loading');
-  requestAnimationFrame(step);
-}
-
-function parsehitsCount(img) {
-  // hits.seeyoufarm gives total/today in the badge SVG
-  // We fetch the JSON endpoint separately
-  var encoded = encodeURIComponent('https://freitas-dias.github.io/clubepoliglotapnz');
-  fetch('https://hits.seeyoufarm.com/api/count/keep/badge.json?url=' + encoded)
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      var totalEl = document.getElementById('total-count');
-      var todayEl = document.getElementById('today-count');
-      if (totalEl && data.total_count !== undefined) {
-        animateCount(totalEl, parseInt(data.total_count));
-      }
-      if (todayEl && data.today_count !== undefined) {
-        animateCount(todayEl, parseInt(data.today_count));
-      }
-    })
-    .catch(function(){
-      // Fallback: fetch increment endpoint to get counts
-      fetch('https://hits.seeyoufarm.com/api/count/incr/badge.json?url=' + encoded)
-        .then(function(r){ return r.json(); })
-        .then(function(data){
-          var totalEl = document.getElementById('total-count');
-          var todayEl = document.getElementById('today-count');
-          if (totalEl) animateCount(totalEl, parseInt(data.total_count || 1));
-          if (todayEl) animateCount(todayEl, parseInt(data.today_count || 1));
-        })
-        .catch(function(){
-          var totalEl = document.getElementById('total-count');
-          var todayEl = document.getElementById('today-count');
-          if (totalEl) { totalEl.textContent = '—'; totalEl.classList.remove('loading'); }
-          if (todayEl) { todayEl.textContent = '—'; todayEl.classList.remove('loading'); }
-        });
     });
 }
 
@@ -1432,6 +1369,91 @@ document.addEventListener('DOMContentLoaded', function() {
   var badge = document.getElementById('hits-badge');
   if (badge && badge.complete) parsehitsCount(badge);
 });
+
+
+// ── VISITOR COUNTER ──
+(function() {
+  var SITE = 'https://freitas-dias.github.io/clubepoliglotapnz';
+  var ENCODED = encodeURIComponent(SITE);
+  
+  // Animate number counting up
+  function animateNum(el, target) {
+    el.classList.remove('loading');
+    var start = 0, duration = 1600, t0 = null;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / duration, 1);
+      var ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(ease * target).toLocaleString('pt-BR');
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString('pt-BR');
+    }
+    requestAnimationFrame(step);
+  }
+
+  function setCount(totalEl, todayEl, total, today) {
+    if (totalEl) animateNum(totalEl, total);
+    if (todayEl)  animateNum(todayEl,  today);
+  }
+
+  function loadCounts() {
+    var totalEl = document.getElementById('total-count');
+    var todayEl = document.getElementById('today-count');
+
+    // Strategy 1: allorigins CORS proxy → hits.seeyoufarm.com JSON (increment)
+    var apiUrl = 'https://hits.seeyoufarm.com/api/count/incr/badge.json?url=' + ENCODED;
+    var proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(apiUrl);
+
+    fetch(proxyUrl)
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        var total = parseInt(d.total_count || d.total || 0);
+        var today = parseInt(d.today_count || d.today || 0);
+        if (total > 0) {
+          setCount(totalEl, todayEl, total, today);
+        } else { throw new Error('zero'); }
+      })
+      .catch(function() {
+        // Strategy 2: direct fetch (works if CORS allowed)
+        fetch(apiUrl)
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            var total = parseInt(d.total_count || 0);
+            var today = parseInt(d.today_count || 0);
+            if (total > 0) setCount(totalEl, todayEl, total, today);
+            else throw new Error('zero');
+          })
+          .catch(function() {
+            // Strategy 3: parse badge SVG text content
+            var svgUrl = 'https://api.allorigins.win/raw?url=' +
+              encodeURIComponent('https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=' + ENCODED);
+            fetch(svgUrl)
+              .then(function(r) { return r.text(); })
+              .then(function(svg) {
+                var nums = svg.match(/>([\d,\.]+)</g);
+                if (nums && nums.length >= 2) {
+                  var today = parseInt(nums[nums.length-2].replace(/[^\d]/g,''));
+                  var total = parseInt(nums[nums.length-1].replace(/[^\d]/g,''));
+                  if (total > 0) setCount(totalEl, todayEl, total, today);
+                  else showDash(totalEl, todayEl);
+                } else { showDash(totalEl, todayEl); }
+              })
+              .catch(function() { showDash(totalEl, todayEl); });
+          });
+      });
+  }
+
+  function showDash(totalEl, todayEl) {
+    if (totalEl) { totalEl.textContent = '—'; totalEl.classList.remove('loading'); }
+    if (todayEl)  { todayEl.textContent = '—';  todayEl.classList.remove('loading'); }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadCounts);
+  } else {
+    loadCounts();
+  }
+})();
 
 </script>
 </body>
