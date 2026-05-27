@@ -210,19 +210,77 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(1.85rem,3.2vw,2.6rem);fo
 .faq-answer-inner{padding:.25rem 0 1.5rem;color:var(--mid);font-size:15px;line-height:1.8}
 .faq-answer-inner ul{padding-left:1.25rem;margin-top:.6rem;display:flex;flex-direction:column;gap:.4rem}
 
+
 /* PODCAST */
-#podcast{background:var(--dark);border-top:1px solid rgba(255,255,255,0.08)}
-#podcast .section-tag{color:#1DB954}
-#podcast h2{color:white}
-#podcast .section-intro{color:rgba(255,255,255,0.65)}
-.spotify-wrap{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.12);border-radius:20px;padding:2rem;display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap}
-.spotify-info{flex:1;min-width:220px}
-.spotify-badge{display:inline-flex;align-items:center;gap:8px;background:#1DB954;color:black;font-size:13px;font-weight:800;padding:7px 16px;border-radius:40px;margin-bottom:1.25rem}
-.spotify-info h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:white;margin-bottom:.6rem}
-.spotify-info p{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:1.25rem}
-.spotify-btn{display:inline-flex;align-items:center;gap:8px;background:#1DB954;color:black;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:800;padding:11px 24px;border-radius:40px;text-decoration:none;transition:opacity .2s,transform .15s}
-.spotify-btn:hover{opacity:.88;transform:translateY(-1px)}
-.spotify-player{flex:2;min-width:280px}
+#podcast {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 72px 2rem;
+}
+#podcast .section-tag { color: #1DB954; }
+#podcast h2 { color: white; margin-bottom: .75rem; }
+.podcast-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  max-width: 960px;
+}
+.podcast-info { }
+.podcast-desc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+.podcast-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1.75rem;
+}
+.podcast-meta-tag {
+  font-size: 12px; font-weight: 700;
+  padding: 5px 13px; border-radius: 40px;
+  background: rgba(29,185,84,0.12);
+  color: #1DB954;
+  border: 1px solid rgba(29,185,84,0.25);
+}
+.spotify-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: #1DB954; color: #000;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 800;
+  padding: 13px 28px; border-radius: 50px;
+  text-decoration: none;
+  transition: opacity .2s, transform .15s;
+  box-shadow: 0 4px 18px rgba(29,185,84,0.3);
+}
+.spotify-btn:hover { opacity: .88; transform: translateY(-1px); }
+.podcast-player {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+}
+.podcast-player iframe {
+  width: 100%;
+  height: 232px;
+  border: none;
+  display: block;
+}
+
+/* RESPONSIVE PODCAST */
+@media (max-width: 700px) {
+  #podcast { padding: 52px 1.25rem; }
+  .podcast-wrap {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .podcast-desc { font-size: 15px; margin-bottom: 1.25rem; }
+  .spotify-btn { width: 100%; justify-content: center; }
+  .podcast-player iframe { height: 200px; }
+}
 
 /* CTA */
 #comunidade{background:var(--terra);text-align:center;padding:90px 2rem;position:relative;overflow:hidden}
@@ -498,6 +556,84 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
   .ia-feat-text p { font-size: 12px; }
   .ia-cta-link { width: 100%; justify-content: center; font-size: 14px; }
   #ia h2 { font-size: 1.75rem; }
+}
+
+
+/* VISITOR COUNTER */
+.counter-section {
+  background: var(--bg2);
+  border-top: 2px solid var(--border);
+  padding: 48px 2rem;
+  text-align: center;
+}
+.counter-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+.counter-label {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 1.8px; text-transform: uppercase;
+  color: var(--muted);
+}
+.counter-display {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.counter-box {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+  min-width: 180px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: box-shadow .2s, transform .2s;
+}
+.counter-box:hover {
+  box-shadow: 0 8px 28px rgba(176,58,24,0.1);
+  transform: translateY(-2px);
+}
+.counter-icon { font-size: 1.6rem; margin-bottom: .2rem; }
+.counter-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--terra);
+  line-height: 1;
+  min-width: 120px;
+  text-align: center;
+}
+.counter-num.loading {
+  opacity: .4;
+  font-size: 1.5rem;
+}
+.counter-sublabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+.counter-since {
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+@media (max-width: 500px) {
+  .counter-box { min-width: 140px; padding: 1.25rem 1.5rem; }
+  .counter-num { font-size: 2rem; }
 }
 
 </style>
@@ -1050,35 +1186,30 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
   <div class="container">
     <span class="section-tag">Podcast</span>
     <h2>Ouça o Clube Poliglota PNZ</h2>
-    <p class="section-intro">Episódios com conversas, dicas e histórias da nossa comunidade. Disponível no Spotify, de graça.</p>
-    <div class="spotify-wrap">
-      <div class="spotify-info">
-        <div class="spotify-badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-          Spotify
+    <div class="podcast-wrap">
+
+      <div class="podcast-info">
+        <p class="podcast-desc">Conversas reais sobre aprendizado de idiomas, dicas dos anfitriões e histórias da nossa comunidade no Sertão pernambucano.</p>
+        <div class="podcast-meta">
+          <span class="podcast-meta-tag">🎙 Podcast</span>
+          <span class="podcast-meta-tag">🆓 Gratuito</span>
+          <span class="podcast-meta-tag">🇧🇷 Em português</span>
         </div>
-        <h3>Clube Poliglota PNZ</h3>
-        <p>Conversas reais sobre aprendizado de idiomas, dicas dos anfitriões e histórias da nossa comunidade no Sertão pernambucano.</p>
         <a href="https://open.spotify.com/show/2tWvSKDmdnjwZ2izfwknY5?si=cQpCeJ7FRhmnQwQrVWZHcw" target="_blank" rel="noopener" class="spotify-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
           Ouvir no Spotify
         </a>
       </div>
-      <div class="spotify-player">
-        <iframe style="border-radius:16px;display:block;width:100%" src="https://open.spotify.com/embed/show/2tWvSKDmdnjwZ2izfwknY5?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- CTA -->
-<section id="comunidade">
-  <div class="container">
-    <h2>Faça parte da comunidade</h2>
-    <p>Mais do que praticar idiomas — é sobre criar conexões reais a partir de Petrolina para o mundo.</p>
-    <div class="cta-btns">
-      <a href="https://chat.whatsapp.com/C6dck7ttby0JIaUy4QBVLg" target="_blank" rel="noopener" class="btn-white">💬 Entrar no grupo do WhatsApp</a>
-      <a href="https://www.instagram.com/clubepoliglotapnz?igsh=MWdvNjI3OTBqNHBrdw==" target="_blank" rel="noopener" class="btn-outline-white">📸 Seguir no Instagram</a>
+      <div class="podcast-player">
+        <iframe
+          src="https://open.spotify.com/embed/show/2tWvSKDmdnjwZ2izfwknY5?utm_source=generator&theme=0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          title="Clube Poliglota PNZ Podcast"
+        ></iframe>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1124,6 +1255,38 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
       </a>
 
     </div>
+  </div>
+</section>
+
+<!-- CONTADOR -->
+<section class="counter-section" id="contador">
+  <div class="counter-wrap">
+    <span class="counter-label">📊 Visitantes do site</span>
+    <div class="counter-display">
+
+      <div class="counter-box">
+        <span class="counter-icon">👁</span>
+        <span class="counter-num loading" id="total-count">...</span>
+        <span class="counter-sublabel">Total de visitas</span>
+      </div>
+
+      <div class="counter-box">
+        <span class="counter-icon">📅</span>
+        <span class="counter-num loading" id="today-count">...</span>
+        <span class="counter-sublabel">Visitas hoje</span>
+      </div>
+
+    </div>
+    <span class="counter-since">🌵 Clube Poliglota PNZ · desde agosto de 2024</span>
+
+    <!-- Hidden hit tracker (increments counter on page load) -->
+    <img
+      src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ffreitas-dias.github.io%2Fclubepoliglotapnz&count_bg=%23B03A18&title_bg=%231C1510&title=hits&edge_flat=true"
+      alt=""
+      id="hits-badge"
+      style="position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;"
+      onload="parsehitsCount(this)"
+    >
   </div>
 </section>
 
@@ -1211,6 +1374,65 @@ document.querySelectorAll('.step-card,.sched-card,.link-card,.idioma-pill,.team-
   el.style.transition = 'opacity .5s ease, transform .5s ease';
   obs.observe(el);
 });
+
+// VISITOR COUNTER
+function animateCount(el, target) {
+  var start = 0;
+  var duration = 1800;
+  var startTime = null;
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    var progress = Math.min((timestamp - startTime) / duration, 1);
+    var ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target).toLocaleString('pt-BR');
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target.toLocaleString('pt-BR');
+  }
+  el.classList.remove('loading');
+  requestAnimationFrame(step);
+}
+
+function parsehitsCount(img) {
+  // hits.seeyoufarm gives total/today in the badge SVG
+  // We fetch the JSON endpoint separately
+  var encoded = encodeURIComponent('https://freitas-dias.github.io/clubepoliglotapnz');
+  fetch('https://hits.seeyoufarm.com/api/count/keep/badge.json?url=' + encoded)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var totalEl = document.getElementById('total-count');
+      var todayEl = document.getElementById('today-count');
+      if (totalEl && data.total_count !== undefined) {
+        animateCount(totalEl, parseInt(data.total_count));
+      }
+      if (todayEl && data.today_count !== undefined) {
+        animateCount(todayEl, parseInt(data.today_count));
+      }
+    })
+    .catch(function(){
+      // Fallback: fetch increment endpoint to get counts
+      fetch('https://hits.seeyoufarm.com/api/count/incr/badge.json?url=' + encoded)
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var totalEl = document.getElementById('total-count');
+          var todayEl = document.getElementById('today-count');
+          if (totalEl) animateCount(totalEl, parseInt(data.total_count || 1));
+          if (todayEl) animateCount(todayEl, parseInt(data.today_count || 1));
+        })
+        .catch(function(){
+          var totalEl = document.getElementById('total-count');
+          var todayEl = document.getElementById('today-count');
+          if (totalEl) { totalEl.textContent = '—'; totalEl.classList.remove('loading'); }
+          if (todayEl) { todayEl.textContent = '—'; todayEl.classList.remove('loading'); }
+        });
+    });
+}
+
+// Also trigger on DOMContentLoaded in case img onload doesn't fire
+document.addEventListener('DOMContentLoaded', function() {
+  var badge = document.getElementById('hits-badge');
+  if (badge && badge.complete) parsehitsCount(badge);
+});
+
 </script>
 </body>
 </html>
