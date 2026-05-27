@@ -560,6 +560,7 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
 
 
 
+
 /* VISITOR COUNTER */
 .counter-section {
   background: var(--bg2);
@@ -568,67 +569,53 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
   text-align: center;
 }
 .counter-wrap {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
+  max-width: 720px; margin: 0 auto;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 1.5rem;
 }
 .counter-label {
   font-size: 12px; font-weight: 700;
   letter-spacing: 1.8px; text-transform: uppercase;
   color: var(--muted);
 }
-.counter-display {
-  display: flex;
-  align-items: stretch;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
+.counter-badges {
+  display: flex; gap: 1.5rem;
+  flex-wrap: wrap; justify-content: center;
+  align-items: center;
 }
-.counter-box {
+.counter-badge-wrap {
   background: var(--white);
   border: 2px solid var(--border);
-  border-radius: 18px;
-  padding: 1.25rem 2rem;
+  border-radius: 16px;
+  padding: 1.25rem 1.75rem;
   display: flex; flex-direction: column;
-  align-items: center; gap: .3rem;
-  min-width: 160px;
+  align-items: center; gap: .6rem;
   box-shadow: 0 3px 16px rgba(0,0,0,0.06);
-  transition: box-shadow .2s, transform .2s;
+  min-width: 150px;
   position: relative; overflow: hidden;
 }
-.counter-box::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+.counter-badge-wrap::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
   background: var(--terra);
 }
-.counter-box:hover {
-  box-shadow: 0 8px 28px rgba(176,58,24,0.12);
-  transform: translateY(-2px);
+.counter-badge-img {
+  height: 28px; width: auto;
+  border-radius: 4px;
+  image-rendering: auto;
 }
-.counter-icon { font-size: 1.4rem; }
-.counter-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem; font-weight: 700;
-  color: var(--terra); line-height: 1;
-  min-width: 100px; text-align: center;
-  transition: all .3s;
-}
-.counter-num.loading { color: var(--border); font-size: 1.5rem; }
-.counter-sublabel {
+.counter-badge-title {
   font-size: 11px; font-weight: 700;
-  color: var(--muted); text-transform: uppercase; letter-spacing: .7px;
+  letter-spacing: .8px; text-transform: uppercase;
+  color: var(--muted);
 }
 .counter-since {
   font-size: 12px; color: var(--muted);
   display: flex; align-items: center; gap: 5px;
 }
 @media (max-width: 480px) {
-  .counter-display { gap: .75rem; }
-  .counter-box { min-width: 130px; padding: 1rem 1.25rem; }
-  .counter-num { font-size: 1.8rem; }
+  .counter-badges { gap: .75rem; }
+  .counter-badge-wrap { min-width: 130px; padding: 1rem 1.25rem; }
 }
 
 
@@ -1258,21 +1245,44 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
 <section class="counter-section" id="contador">
   <div class="counter-wrap">
     <span class="counter-label">📊 Visitantes do site</span>
-    <div class="counter-display">
-      <div class="counter-box">
-        <span class="counter-icon">👁</span>
-        <span class="counter-num loading" id="total-count">—</span>
-        <span class="counter-sublabel">Total de visitas</span>
+    <div class="counter-badges">
+
+      <div class="counter-badge-wrap">
+        <span class="counter-badge-title">👁 Total de visitas</span>
+        <img
+          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ffreitas-dias.github.io%2Fclubepoliglotapnz&count_bg=%23B03A18&title_bg=%231C1510&icon=eye.svg&icon_color=%23FFFFFF&title=Total&edge_flat=false"
+          alt="Total de visitas"
+          class="counter-badge-img"
+          style="height:32px"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
       </div>
-      <div class="counter-box">
-        <span class="counter-icon">📅</span>
-        <span class="counter-num loading" id="today-count">—</span>
-        <span class="counter-sublabel">Visitas hoje</span>
+
+      <div class="counter-badge-wrap">
+        <span class="counter-badge-title">📅 Visitas hoje</span>
+        <img
+          src="https://hits.seeyoufarm.com/api/count/keep/badge.svg?url=https%3A%2F%2Ffreitas-dias.github.io%2Fclubepoliglotapnz&count_bg=%230E6E62&title_bg=%231C1510&icon=calendar.svg&icon_color=%23FFFFFF&title=Hoje&edge_flat=false"
+          alt="Visitas hoje"
+          class="counter-badge-img"
+          style="height:32px"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
       </div>
+
+      <div class="counter-badge-wrap">
+        <span class="counter-badge-title">🌐 Visitantes únicos</span>
+        <img
+          src="https://visitor-badge.laobi.icu/badge?page_id=Freitas-Dias.clubepoliglotapnz&left_color=%231C1510&right_color=%23B03A18&left_text=Visitantes"
+          alt="Visitantes únicos"
+          class="counter-badge-img"
+          style="height:28px"
+          referrerpolicy="no-referrer-when-downgrade"
+          onerror="this.parentElement.style.display='none'"
+        >
+      </div>
+
     </div>
     <span class="counter-since">🌵 Clube Poliglota PNZ · desde agosto de 2024</span>
-    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ffreitas-dias.github.io%2Fclubepoliglotapnz&count_bg=%23B03A18&title_bg=%231C1510&icon=eye.svg&icon_color=%23E8E8E8&title=Total%20de%20Visitas&edge_flat=false" alt="visitas" id="hits-badge"
-      style="position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;">
   </div>
 </section>
 
@@ -1371,89 +1381,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// ── VISITOR COUNTER ──
-(function() {
-  var SITE = 'https://freitas-dias.github.io/clubepoliglotapnz';
-  var ENCODED = encodeURIComponent(SITE);
-  
-  // Animate number counting up
-  function animateNum(el, target) {
-    el.classList.remove('loading');
-    var start = 0, duration = 1600, t0 = null;
-    function step(ts) {
-      if (!t0) t0 = ts;
-      var p = Math.min((ts - t0) / duration, 1);
-      var ease = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.floor(ease * target).toLocaleString('pt-BR');
-      if (p < 1) requestAnimationFrame(step);
-      else el.textContent = target.toLocaleString('pt-BR');
-    }
-    requestAnimationFrame(step);
-  }
-
-  function setCount(totalEl, todayEl, total, today) {
-    if (totalEl) animateNum(totalEl, total);
-    if (todayEl)  animateNum(todayEl,  today);
-  }
-
-  function loadCounts() {
-    var totalEl = document.getElementById('total-count');
-    var todayEl = document.getElementById('today-count');
-
-    // Strategy 1: allorigins CORS proxy → hits.seeyoufarm.com JSON (increment)
-    var apiUrl = 'https://hits.seeyoufarm.com/api/count/incr/badge.json?url=' + ENCODED;
-    var proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(apiUrl);
-
-    fetch(proxyUrl)
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
-        var total = parseInt(d.total_count || d.total || 0);
-        var today = parseInt(d.today_count || d.today || 0);
-        if (total > 0) {
-          setCount(totalEl, todayEl, total, today);
-        } else { throw new Error('zero'); }
-      })
-      .catch(function() {
-        // Strategy 2: direct fetch (works if CORS allowed)
-        fetch(apiUrl)
-          .then(function(r) { return r.json(); })
-          .then(function(d) {
-            var total = parseInt(d.total_count || 0);
-            var today = parseInt(d.today_count || 0);
-            if (total > 0) setCount(totalEl, todayEl, total, today);
-            else throw new Error('zero');
-          })
-          .catch(function() {
-            // Strategy 3: parse badge SVG text content
-            var svgUrl = 'https://api.allorigins.win/raw?url=' +
-              encodeURIComponent('https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=' + ENCODED);
-            fetch(svgUrl)
-              .then(function(r) { return r.text(); })
-              .then(function(svg) {
-                var nums = svg.match(/>([\d,\.]+)</g);
-                if (nums && nums.length >= 2) {
-                  var today = parseInt(nums[nums.length-2].replace(/[^\d]/g,''));
-                  var total = parseInt(nums[nums.length-1].replace(/[^\d]/g,''));
-                  if (total > 0) setCount(totalEl, todayEl, total, today);
-                  else showDash(totalEl, todayEl);
-                } else { showDash(totalEl, todayEl); }
-              })
-              .catch(function() { showDash(totalEl, todayEl); });
-          });
-      });
-  }
-
-  function showDash(totalEl, todayEl) {
-    if (totalEl) { totalEl.textContent = '—'; totalEl.classList.remove('loading'); }
-    if (todayEl)  { todayEl.textContent = '—';  todayEl.classList.remove('loading'); }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadCounts);
-  } else {
-    loadCounts();
-  }
-})();
+// contador: usa badges de imagem (sem JS)
 
 </script>
 </body>
