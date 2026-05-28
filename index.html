@@ -824,51 +824,67 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
 .sched-card.it .sched-join{background:var(--it-text)}
 
 
-/* DEPOIMENTOS */
+
+
+/* DEPOIMENTOS CARROSSEL */
 #depoimentos {
   background: var(--bg2);
   border-top: 2px solid var(--border);
   padding: 72px 2rem;
+  overflow: hidden;
 }
-.dep-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 900px;
+#depoimentos .section-intro-wrap {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+#depoimentos .section-intro-wrap p {
+  font-size: 15px; color: var(--mid); line-height: 1.7;
+  max-width: 520px; margin: .6rem auto 0;
+}
+.dep-carousel-wrap {
+  position: relative;
+  max-width: 680px;
   margin: 0 auto;
 }
+.dep-track {
+  display: flex;
+  transition: transform .45s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
+}
 .dep-card {
+  min-width: 100%;
   background: var(--white);
   border: 1.5px solid var(--border);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 24px;
+  padding: 2.25rem 2.5rem 2rem;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.1rem;
   position: relative;
-  transition: box-shadow .2s, border-color .2s;
 }
-.dep-card:hover {
-  border-color: var(--terra);
-  box-shadow: 0 8px 32px rgba(176,58,24,0.08);
-}
-.dep-quote {
-  font-size: 3.5rem;
-  line-height: 1;
-  color: var(--terra);
-  opacity: .18;
+.dep-quote-mark {
   font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  line-height: .8;
+  color: var(--terra);
+  opacity: .15;
   position: absolute;
-  top: 1rem; left: 1.5rem;
+  top: 1.25rem; left: 2rem;
   pointer-events: none;
+  user-select: none;
 }
+.dep-stars {
+  display: flex; gap: 3px;
+  padding-top: 1.8rem;
+}
+.dep-star { color: #F4B400; font-size: 15px; }
 .dep-text {
-  font-size: 15px;
+  font-size: 15.5px;
   color: var(--mid);
-  line-height: 1.75;
-  padding-top: 1.5rem;
-  flex: 1;
+  line-height: 1.8;
   font-style: italic;
+  flex: 1;
 }
 .dep-author {
   display: flex;
@@ -876,54 +892,62 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
   gap: 14px;
   border-top: 1px solid var(--border);
   padding-top: 1.1rem;
-  margin-top: auto;
 }
-.dep-avatar {
-  width: 52px; height: 52px;
+.dep-initial {
+  width: 48px; height: 48px;
   border-radius: 50%;
-  object-fit: cover;
+  background: var(--terra-bg);
+  color: var(--terra);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 800; font-size: 15px;
   border: 2.5px solid var(--terra);
   flex-shrink: 0;
 }
-.dep-initial {
-  background: var(--terra-bg);
-  color: var(--terra);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 800;
-  font-size: 15px;
-  letter-spacing: .5px;
+.dep-name { font-weight: 700; font-size: 14px; color: var(--dark); }
+.dep-role { font-size: 12px; color: var(--mid); margin-top: 2px; }
+
+/* Nav arrows */
+.dep-nav {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; margin-top: 1.75rem;
 }
-.dep-name {
-  font-weight: 700;
-  font-size: 14px;
+.dep-arrow {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--white);
   color: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, transform .15s;
+  flex-shrink: 0;
 }
-.dep-role {
-  font-size: 12px;
-  color: var(--mid);
-  margin-top: 2px;
+.dep-arrow:hover {
+  background: var(--terra);
+  border-color: var(--terra);
+  color: white;
+  transform: scale(1.08);
 }
-.dep-stars {
-  display: flex;
-  gap: 2px;
-  margin-bottom: .3rem;
+.dep-arrow svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Dots */
+.dep-dots {
+  display: flex; align-items: center; gap: 8px;
 }
-.dep-star { color: #F4B400; font-size: 13px; }
-.dep-intro {
-  max-width: 560px;
-  margin: 0 auto 2.5rem;
-  text-align: center;
+.dep-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background .25s, transform .25s;
 }
-.dep-intro p {
-  font-size: 15px;
-  color: var(--mid);
-  line-height: 1.7;
+.dep-dot.active {
+  background: var(--terra);
+  transform: scale(1.35);
 }
-@media (max-width: 640px) {
-  .dep-grid { grid-template-columns: 1fr; }
+@media (max-width: 600px) {
+  .dep-card { padding: 1.75rem 1.5rem 1.5rem; }
+  .dep-text { font-size: 14.5px; }
 }
 
 </style>
@@ -1738,47 +1762,65 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
 </section>
 
 
+
+
 <!-- DEPOIMENTOS -->
 <section id="depoimentos">
   <div class="container">
-    <span class="section-tag">Depoimentos</span>
-    <h2>Histórias reais de transformação</h2>
-    <div class="dep-intro">
+    <div class="section-intro-wrap">
+      <h2>Histórias reais de transformação</h2>
       <p>Veja o que os membros do Clube Poliglota PNZ dizem sobre a experiência de praticar idiomas com a gente.</p>
     </div>
-    <div class="dep-grid">
 
-      <div class="dep-card">
-        <span class="dep-quote">"</span>
-        <div class="dep-stars">
-          <span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span>
-        </div>
-        <p class="dep-text">Os encontros do clube poliglota me ajudaram a destravar a fala e melhorar a pronúncia. Além disso, fiz bastantes amizades que me ajudaram bastante nos aprendizados de idiomas.</p>
-        <div class="dep-author">
-          <div class="dep-avatar dep-initial">MS</div>
-          <div>
-            <div class="dep-name">Mateus Só da Silva</div>
-            <div class="dep-role">Membro do clube</div>
+    <div class="dep-carousel-wrap">
+      <div class="dep-track" id="depTrack">
+
+        <!-- Card 1 — Mateus -->
+        <div class="dep-card">
+          <span class="dep-quote-mark">"</span>
+          <div class="dep-stars">
+            <span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span>
+          </div>
+          <p class="dep-text">Os encontros do clube poliglota me ajudaram a destravar a fala e melhorar a pronúncia. Além disso, fiz bastantes amizades que me ajudaram bastante nos aprendizados de idiomas.</p>
+          <div class="dep-author">
+            <div class="dep-initial">MS</div>
+            <div>
+              <div class="dep-name">Mateus Só da Silva</div>
+              <div class="dep-role">Membro do clube</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="dep-card">
-        <span class="dep-quote">"</span>
-        <div class="dep-stars">
-          <span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span>
-        </div>
-        <p class="dep-text">Amo demais o clube Poliglota PNZ pela organização, funcionalidade e interação que ele promove. Sempre tem conteúdos interessantes, suporte, meetings, respostas rápidas e tudo sem nenhum custo!</p>
-        <div class="dep-author">
-          <div class="dep-avatar dep-initial">AC</div>
-          <div>
-            <div class="dep-name">Ana Catarina</div>
-            <div class="dep-role">Membro do clube</div>
+        <!-- Card 2 — Ana Catarina -->
+        <div class="dep-card">
+          <span class="dep-quote-mark">"</span>
+          <div class="dep-stars">
+            <span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span><span class="dep-star">★</span>
+          </div>
+          <p class="dep-text">Amo demais o clube Poliglota PNZ pela organização, funcionalidade e interação que ele promove. Sempre tem conteúdos interessantes, suporte, meetings, respostas rápidas e tudo sem nenhum custo!</p>
+          <div class="dep-author">
+            <div class="dep-initial">AC</div>
+            <div>
+              <div class="dep-name">Ana Catarina</div>
+              <div class="dep-role">Membro do clube</div>
+            </div>
           </div>
         </div>
-      </div>
 
+      </div><!-- /dep-track -->
+
+      <!-- Controls -->
+      <div class="dep-nav">
+        <button class="dep-arrow" id="depPrev" aria-label="Anterior" onclick="depMove(-1)">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="dep-dots" id="depDots"></div>
+        <button class="dep-arrow" id="depNext" aria-label="Próximo" onclick="depMove(1)">
+          <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -1911,6 +1953,53 @@ document.querySelectorAll('.step-card,.sched-card,.link-card,.idioma-pill,.team-
   el.style.transition = 'opacity .5s ease, transform .5s ease';
   obs.observe(el);
 });
+
+
+// DEPOIMENTOS CARROSSEL
+(function() {
+  var track  = document.getElementById('depTrack');
+  var dotsWrap = document.getElementById('depDots');
+  if (!track || !dotsWrap) return;
+  var cards  = track.querySelectorAll('.dep-card');
+  var total  = cards.length;
+  var cur    = 0;
+  var autoTimer;
+
+  // Build dots
+  for (var i = 0; i < total; i++) {
+    var d = document.createElement('button');
+    d.className = 'dep-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Depoimento ' + (i+1));
+    d.setAttribute('data-i', i);
+    d.onclick = function() { depGo(parseInt(this.getAttribute('data-i'))); };
+    dotsWrap.appendChild(d);
+  }
+
+  function depGo(idx) {
+    cur = (idx + total) % total;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dotsWrap.querySelectorAll('.dep-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === cur);
+    });
+    resetAuto();
+  }
+
+  window.depMove = function(dir) { depGo(cur + dir); };
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function() { depGo(cur + 1); }, 5000);
+  }
+  resetAuto();
+
+  // Touch/swipe support
+  var startX = 0;
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', function(e) {
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) depGo(cur + (diff > 0 ? 1 : -1));
+  }, {passive:true});
+})();
 
 </script>
 
