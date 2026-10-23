@@ -946,11 +946,17 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
 .sched-card.es .sched-join{background:#C8A000}
 
 
-.sched-card.es,.team-card.es-host{border-color:#C8A000}
-.team-card.es-host .team-lang-badge{background:#FFFBE6;color:#7A5F00}
-.team-card.es-host .team-photo-wrap{border-color:#C8A000}
-.team-card.es-host .team-photo-initials{background:#FFFBE6;color:#7A5F00}
+.sched-card.es{border-color:#C8A000}
 
+
+
+
+
+.team-card.es-host::before{background:linear-gradient(90deg,#D9731A,#F2A33A)}
+.team-card.es-host .team-role{background:rgba(242,163,58,0.15);color:#F2B968}
+.team-photo-wrap.initials{display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:800}
+.team-card.en-host .team-photo-wrap.initials{background:rgba(58,110,232,0.2);color:#8AAEE8}
+.team-card.es-host .team-photo-wrap.initials{background:rgba(242,163,58,0.18);color:#F2B968}
 </style>
 </head>
 <body>
@@ -1252,25 +1258,19 @@ footer{background:#0A0602;color:rgba(255,255,255,0.4);padding:40px 2rem}
         <div class="team-days"><span class="day-tag">Domingo · 15h10</span></div>
       </div>
       <div class="team-card en-host">
-        <div class="team-photo-wrap">
-          <div class="team-photo-initials">RJ</div>
-        </div>
-        <div class="team-info">
-          <span class="team-lang-badge">🇺🇸 Inglês</span>
-          <span class="team-name">Rafael de Jesus Oliveira</span>
-          <span class="team-desc">Anfitrião de Inglês às quartas-feiras, 21h10.</span>
-        </div>
+        <div class="team-photo-wrap initials">RJ</div>
+        <div class="team-name">Rafael de Jesus Oliveira</div>
+        <div class="team-role"><img src="https://flagcdn.com/w40/us.png" alt="EUA" class="flag-img"> Inglês</div>
+        <div class="team-desc">Anfitrião do encontro de inglês às quartas-feiras à noite.</div>
+        <div class="team-days"><span class="day-tag">Quarta · 21h10</span></div>
       </div>
 
       <div class="team-card es-host">
-        <div class="team-photo-wrap">
-          <div class="team-photo-initials">NA</div>
-        </div>
-        <div class="team-info">
-          <span class="team-lang-badge">🇪🇸 Espanhol</span>
-          <span class="team-name">Nicolly Alves</span>
-          <span class="team-desc">Moderadora de Espanhol aos sábados, 14h00.</span>
-        </div>
+        <div class="team-photo-wrap initials">NA</div>
+        <div class="team-name">Nicolly Alves</div>
+        <div class="team-role"><img src="https://flagcdn.com/w40/es.png" alt="Espanha" class="flag-img"> Espanhol</div>
+        <div class="team-desc">Moderadora do encontro de espanhol aos sábados à tarde.</div>
+        <div class="team-days"><span class="day-tag">Sábado · 14h00</span></div>
       </div>
 
       <div class="team-card en-host" style="border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.75rem;min-height:280px">
